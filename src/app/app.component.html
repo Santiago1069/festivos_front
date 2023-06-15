@@ -1,0 +1,76 @@
+<div class="login-page bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="bg-white shadow rounded">
+                    <div class="row">
+                        <div class="col-md-7 pe-0">
+                            <div class="form-left h-100 py-5 px-5">
+
+                                <form class="row g-4">
+                                    <h2>Seleccionar fecha</h2>
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" [(ngModel)]="fechaSeleccionada"
+                                                name="fechaSeleccionada" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary px-4 float-end"
+                                            (click)="getFecha()">Validar fecha</button>
+                                    </div>
+                                </form>
+                                <br />
+                                <form class="row g-4">
+                                    <h2>Ingresa el año</h2>
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" [(ngModel)]="anioIngresado" (focus)="ocultar()"  
+                                                autocomplete="off" name="anioIngresado" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-primary px-4 " type="button"  (click)="consultarAnio()">Ver festivos del
+                                            año</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-left h-100 py-5 px-5">
+                                <p><strong>Fecha actual:</strong> {{fechaActual}}</p>
+                                <p><strong>Fecha seleccionada:</strong> {{ fechaSeleccionada == '' ? ' Seleccione una
+                                    fecha' : fechaSeleccionada}}</p>
+                                <p><strong>Validacion de fecha:</strong> {{ respuestaBack == '' ? ' Seleccione una fecha
+                                    y dar clic en el boton validar fecha' : respuestaBack}} </p>
+
+                                <p>"Cada ves que quieras consultar un año tienes que darle clic en el campo para ingresar un año y dar clic en <strong>'Ver festivos del año'</strong>"</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 ps-0" *ngIf="mostrarTabla">
+                        <div class="form-right" style="padding: 15px;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr style="text-align: center;">
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let festivo of festivos" style="text-align: center;">
+                                        <td>{{festivo.fecha}}</td>
+                                        <td>{{festivo.descripcion}}</td>
+                                        <td>{{festivo.tipo.tipo}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
